@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap Library -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Heading goes here -->
+    <div class="bg-dark bg-gradient">
+        <h1 class="p-3 text-center text-light">Weather Dashboard</h1>
+    </div>
+
+    <!-- Everything else goes here -->
+    <div class="container">
+        <div class="row">
+            <!-- Here is the form and the list of cities that have benn saved -->
+            <aside class="col-4">
+                <!-- City Search -->
+                <form>
+                    <div class="mb-3">
+                        <label for="search-input" class="form-label">Search for a City:</label>
+                        <div class="input-group">
+                            <input type="text" name="search-input" id="search-input" class="form-control">
+                            <input type="submit" value="Search" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+                <!-- Cities List -->
+                <div id="cities-card" class="card">
+                    <ul id="cities-list" class="list-group">
+                        <li class="list-group-item list-group-item-action">Atlanta</li>
+                        <li class="list-group-item list-group-item-action">Chicago</li>
+                    </ul>
+                </div>
+            </aside>
+            <!-- Today and Forecast goes here -->
+            <main class="col-8">
+                <!-- Today -->
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Atlanta <span>(1/24/2021)</span><span>icon</span></h2>
+                        <p class="card-text">Temperature: <span>30°</span></p>
+                        <p class="card-text">Humidity: <span>40%</span></p>
+                        <p class="card-text">Wind Speed: <span>4.7mph</span></p>
+                        <p class="card-text">UV Index: <span>9.49</span></p>
+                    </div>
+                </div>
+                <!-- Future Forecast -->
+                <h2>5 Day Forecast</h2>
+                <div class="card-group">
+                    <div class="card text-white bg-primary border-light mb-3">
+                        <div class="card-body">
+                            <h3 class=" card-title">1/25/21</h3>
+                            <p><span>icon</span></p>
+                            <p class="card-text">Temp: <span>50°</span></p>
+                            <p class="card-text">Humidity: <span>40%</span></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary border-light mb-3">
+                        <div class="card-body">
+                            <h3 class=" card-title">1/25/21</h3>
+                            <p><span>icon</span></p>
+                            <p class="card-text">Temp: <span>50°</span></p>
+                            <p class="card-text">Humidity: <span>40%</span></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary border-light mb-3">
+                        <div class="card-body">
+                            <h3 class=" card-title">1/25/21</h3>
+                            <p><span>icon</span></p>
+                            <p class="card-text">Temp: <span>50°</span></p>
+                            <p class="card-text">Humidity: <span>40%</span></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary border-light mb-3">
+                        <div class="card-body">
+                            <h3 class=" card-title">1/25/21</h3>
+                            <p><span>icon</span></p>
+                            <p class="card-text">Temp: <span>50°</span></p>
+                            <p class="card-text">Humidity: <span>40%</span></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary border-light mb-3">
+                        <div class="card-body">
+                            <h3 class=" card-title">1/25/21</h3>
+                            <p><span>icon</span></p>
+                            <p class="card-text">Temp: <span>50°</span></p>
+                            <p class="card-text">Humidity: <span>40%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
