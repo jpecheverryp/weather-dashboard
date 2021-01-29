@@ -16,7 +16,7 @@ $().ready(function () {
     var searchBtn = $('#search-btn');
     var citiesList = $('#cities-list');
 
-    // Functions 
+    // ------------------  Functions  -------------------------
     // This function checks if a city is in saved in the local Storage, then saves it if it's not included
     function insertToLocal(city) {
         if (weatherHistory.cities.includes(city) === false) {
@@ -36,15 +36,50 @@ $().ready(function () {
         });
     }
 
+    function getFormatedDate(){
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return `(${month}/${day}/${year})`;
+    }
+
+    function callAPI(city) {
+        var apiKey = '16265bff2120f2467d9ec41ab15065e7';
+        var urlQuery = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey + '&units=imperial';
+        $.ajax({
+            url: urlQuery,
+            method: 'GET'
+        }).then(function (data) {
+            console.log(data);
+            $('#current-weather').empty();
+            // City Name and date
+            $('#current-weather').append($('<h2>').text(data.name + ' ' + getFormatedDate()).addClass('card-title') );
+            
+            // Icon
+            var iconURL = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
+            
+            var iconElement = $('<img>').attr('src', iconURL).css('float', 'right');
+            iconElement.attr('alt', data.weather[0].description);
+            $('#current-weather').append(iconElement);
+
+            $('#current-weather').append($('<p>').text('Temperature: ' + data.main.temp + '°').addClass('card-text'));
+            $('#current-weather').append($('<p>').text('Humidity: ' + data.main.humidity + '%').addClass('card-text'));
+            $('#current-weather').append($('<p>').text('Wind Speed: ' + data.wind.speed + 'MPH').addClass('card-text'));
+        })
+    }
+
     // Click Events
     searchBtn.on('click', function (e) {
         e.preventDefault();
+        var city = searchInput.val();
         // We insert the city that was searched into the localStorage
         insertToLocal(searchInput.val());
         // Empties input box to be used again
         searchInput.val('');
         // Displays the recent searches
         displayRecentCities();
+        callAPI(city)
     });
 
     displayRecentCities();
