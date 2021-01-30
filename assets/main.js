@@ -30,9 +30,13 @@ $().ready(function () {
         citiesList.empty();
         weatherHistory.cities.forEach(element => {
             var currentCity = $('<div>').text(element);
-            currentCity.addClass(['list-group-item', 'list-group-item-action']);
+            currentCity.addClass(['list-group-item', 'list-group-item-action', 'recent-city']);
             currentCity.attr('data-city', element);
             citiesList.append(currentCity);
+            currentCity.on('click', function (e) {
+                e.preventDefault();
+                callAPI($(this).attr('data-city'));
+            })
         });
     }
 
@@ -51,7 +55,6 @@ $().ready(function () {
             url: urlQuery,
             method: 'GET'
         }).then(function (data) {
-            console.log(data);
             $('#current-weather').empty();
             // City Name and date
             $('#current-weather').append($('<h2>').text(data.name + ' ' + getFormatedDate()).addClass('card-title').css('display', 'inline') );
