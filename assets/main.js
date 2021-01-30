@@ -54,12 +54,13 @@ $().ready(function () {
             console.log(data);
             $('#current-weather').empty();
             // City Name and date
-            $('#current-weather').append($('<h2>').text(data.name + ' ' + getFormatedDate()).addClass('card-title') );
+            $('#current-weather').append($('<h2>').text(data.name + ' ' + getFormatedDate()).addClass('card-title').css('display', 'inline') );
             
             // Icon
             var iconURL = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png';
             
-            var iconElement = $('<img>').attr('src', iconURL).css('float', 'right');
+            var iconElement = $('<img>').attr('src', iconURL).css('display', 'inline');
+            iconElement.css('margin-left', '1rem');
             iconElement.attr('alt', data.weather[0].description);
             $('#current-weather').append(iconElement);
 
