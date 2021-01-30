@@ -97,6 +97,8 @@ $().ready(function () {
             url: queryURL,
             method: 'GET'
         }).then(function (data) {
+            forecastContainer.empty();
+            console.log(data);
             for (let i = 1; i < 6; i++) {
                 let dayData =  data.daily[i];
                 var forecastCard = $('<div>');
@@ -112,7 +114,6 @@ $().ready(function () {
                 $('<p>').addClass('card-text').text('Humidity: ' + dayData.humidity + '%').appendTo(forecastCardBody);
 
                 forecastCard.appendTo(forecastContainer)
-                console.log(dayData);
             }
             
         });
