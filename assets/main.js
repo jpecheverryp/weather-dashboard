@@ -17,6 +17,9 @@ $().ready(function () {
     var citiesList = $('#cities-list');
     var forecastContainer = $('#forecast-container');
 
+    // UV index is a global variable
+    var uvi;
+
     // ------------------  Functions  -------------------------
     // This function checks if a city is in saved in the local Storage, then saves it if it's not included
     function insertToLocal(city) {
@@ -97,8 +100,21 @@ $().ready(function () {
             url: queryURL,
             method: 'GET'
         }).then(function (data) {
+            // Empties forecast container
             forecastContainer.empty();
-            console.log(data);
+            // Retrieves UV index from API
+            uvi = data.current.uvi;
+
+            var bgColor = '';
+            if(uvi < 3) {
+                bgColor = 'bg-success';
+            } else if (uvi < 6) {
+                bgColor = 'bg-warning';
+            } else {
+                bgColor = 'bg-danger'
+            }
+
+            // Generates every forecast card 
             for (let i = 1; i < 6; i++) {
                 let dayData =  data.daily[i];
                 var forecastCard = $('<div>');
@@ -115,9 +131,14 @@ $().ready(function () {
 
                 forecastCard.appendTo(forecastContainer)
             }
-            
+        
+            var uvIndex =  $('<p>').addClass('card-text').text('UV index: ');
+            uvIndex.appendTo($('#current-weather'));
+            uvIndex.append($('<span>').text(uvi).addClass(['badge', bgColor]));
+
         });
     }
+
 
     // Click Events
     searchBtn.on('click', function (e) {
@@ -133,5 +154,4 @@ $().ready(function () {
     });
 
     displayRecentCities();
-    console.log(getDateEpoch(1612029600));
 });
