@@ -20,7 +20,7 @@
     <div class="container">
         <div class="row">
             <!-- Here is the form and the list of cities that have benn saved -->
-            <aside class="col-4">
+            <aside class="col-3">
                 <!-- City Search -->
                 <form>
                     <div class="mb-3">
@@ -38,55 +38,16 @@
                 </div>
             </aside>
             <!-- Today and Forecast goes here -->
-            <main class="col-8">
+            <main class="col-9">
                 <!-- Today -->
+                <h2>Current Weather</h2>
                 <div class="card">
                     <div id="current-weather" class="card-body">
                     </div>
                 </div>
                 <!-- Future Forecast -->
                 <h2>5 Day Forecast</h2>
-                <div class="card-group">
-                    <div class="card text-white bg-primary border-light mb-3">
-                        <div class="card-body">
-                            <h3 class=" card-title">1/25/21</h3>
-                            <p><span>icon</span></p>
-                            <p class="card-text">Temp: <span>50°</span></p>
-                            <p class="card-text">Humidity: <span>40%</span></p>
-                        </div>
-                    </div>
-                    <div class="card text-white bg-primary border-light mb-3">
-                        <div class="card-body">
-                            <h3 class=" card-title">1/25/21</h3>
-                            <p><span>icon</span></p>
-                            <p class="card-text">Temp: <span>50°</span></p>
-                            <p class="card-text">Humidity: <span>40%</span></p>
-                        </div>
-                    </div>
-                    <div class="card text-white bg-primary border-light mb-3">
-                        <div class="card-body">
-                            <h3 class=" card-title">1/25/21</h3>
-                            <p><span>icon</span></p>
-                            <p class="card-text">Temp: <span>50°</span></p>
-                            <p class="card-text">Humidity: <span>40%</span></p>
-                        </div>
-                    </div>
-                    <div class="card text-white bg-primary border-light mb-3">
-                        <div class="card-body">
-                            <h3 class=" card-title">1/25/21</h3>
-                            <p><span>icon</span></p>
-                            <p class="card-text">Temp: <span>50°</span></p>
-                            <p class="card-text">Humidity: <span>40%</span></p>
-                        </div>
-                    </div>
-                    <div class="card text-white bg-primary border-light mb-3">
-                        <div class="card-body">
-                            <h3 class=" card-title">1/25/21</h3>
-                            <p><span>icon</span></p>
-                            <p class="card-text">Temp: <span>50°</span></p>
-                            <p class="card-text">Humidity: <span>40%</span></p>
-                        </div>
-                    </div>
+                <div class="card-group" id="forecast-container">
                 </div>
             </main>
         </div>

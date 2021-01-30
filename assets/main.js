@@ -15,6 +15,7 @@ $().ready(function () {
     var searchInput = $('#search-input');
     var searchBtn = $('#search-btn');
     var citiesList = $('#cities-list');
+    var forecastContainer = $('#forecast-container');
 
     // ------------------  Functions  -------------------------
     // This function checks if a city is in saved in the local Storage, then saves it if it's not included
@@ -40,12 +41,22 @@ $().ready(function () {
         });
     }
 
+    // Returns a string that contains current date in format (mm/dd/yyyy)
     function getFormatedDate(){
         var date = new Date();
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
         return `(${month}/${day}/${year})`;
+    }
+
+    // Returns a string containing date using provided milliseconds format mm/dd/yyyy
+    function getDateEpoch(milliseconds) {
+        var myDate = new Date(milliseconds * 1000);
+        var day = myDate.getDate();
+        var month = myDate.getMonth() + 1;
+        var year = myDate.getFullYear();
+        return `${month}/${day}/${year}`
     }
 
     function callAPI(city) {
@@ -70,7 +81,41 @@ $().ready(function () {
             $('#current-weather').append($('<p>').text('Temperature: ' + data.main.temp + '°').addClass('card-text'));
             $('#current-weather').append($('<p>').text('Humidity: ' + data.main.humidity + '%').addClass('card-text'));
             $('#current-weather').append($('<p>').text('Wind Speed: ' + data.wind.speed + 'MPH').addClass('card-text'));
+
+            var lat = data.coord.lat;
+            var lon = data.coord.lon;
+
+            getForecast(lat, lon)
         })
+    }
+
+    function getForecast(lat, lon) {
+        var apiKey = '16265bff2120f2467d9ec41ab15065e7';
+        var queryURL = 'http://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly,alerts&appid=' + apiKey + '&units=imperial';
+
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).then(function (data) {
+            for (let i = 1; i < 6; i++) {
+                let dayData =  data.daily[i];
+                var forecastCard = $('<div>');
+                forecastCard.addClass(['card', 'text-white', 'bg-primary', 'border-light', 'mb-3']);
+
+                var forecastCardBody = $('<div>').addClass('card-body');
+                forecastCard.append(forecastCardBody);
+
+                $('<h3>').addClass('card-title').text(getDateEpoch(dayData.dt)).appendTo(forecastCardBody);
+                var forecastIconURL = 'http://openweathermap.org/img/wn/' + dayData.weather[0].icon + '@2x.png';
+                $('<img>').attr('src', forecastIconURL).attr('alt', dayData.weather[0].description).css('width', '50%').appendTo(forecastCardBody);
+                $('<p>').addClass('card-text').text('Temp: ' + dayData.temp.day + '°').appendTo(forecastCardBody);
+                $('<p>').addClass('card-text').text('Humidity: ' + dayData.humidity + '%').appendTo(forecastCardBody);
+
+                forecastCard.appendTo(forecastContainer)
+                console.log(dayData);
+            }
+            
+        });
     }
 
     // Click Events
@@ -87,4 +132,5 @@ $().ready(function () {
     });
 
     displayRecentCities();
+    console.log(getDateEpoch(1612029600));
 });
