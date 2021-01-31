@@ -124,7 +124,7 @@ $().ready(function () {
                 forecastCard.append(forecastCardBody);
 
                 $('<h3>').addClass('card-title').text(getDateEpoch(dayData.dt)).appendTo(forecastCardBody);
-                var forecastIconURL = 'http://openweathermap.org/img/wn/' + dayData.weather[0].icon + '@2x.png';
+                var forecastIconURL = 'https://openweathermap.org/img/wn/' + dayData.weather[0].icon + '@2x.png';
                 $('<img>').attr('src', forecastIconURL).attr('alt', dayData.weather[0].description).css('width', '50%').appendTo(forecastCardBody);
                 $('<p>').addClass('card-text').text('Temp: ' + dayData.temp.day + '°').appendTo(forecastCardBody);
                 $('<p>').addClass('card-text').text('Humidity: ' + dayData.humidity + '%').appendTo(forecastCardBody);
