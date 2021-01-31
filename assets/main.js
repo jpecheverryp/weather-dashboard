@@ -111,7 +111,7 @@ $().ready(function () {
             } else if (uvi < 6) {
                 bgColor = 'bg-warning';
             } else {
-                bgColor = 'bg-danger'
+                bgColor = 'bg-danger';
             }
 
             // Generates every forecast card 
@@ -129,7 +129,7 @@ $().ready(function () {
                 $('<p>').addClass('card-text').text('Temp: ' + dayData.temp.day + '°').appendTo(forecastCardBody);
                 $('<p>').addClass('card-text').text('Humidity: ' + dayData.humidity + '%').appendTo(forecastCardBody);
 
-                forecastCard.appendTo(forecastContainer)
+                forecastCard.appendTo(forecastContainer);
             }
         
             var uvIndex =  $('<p>').addClass('card-text').text('UV index: ');
@@ -150,7 +150,7 @@ $().ready(function () {
         searchInput.val('');
         // Displays the recent searches
         displayRecentCities();
-        callAPI(city)
+        callAPI(city);
     });
 
     displayRecentCities();
